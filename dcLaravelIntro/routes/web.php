@@ -15,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/','home')->name('home');
 Route::view('/about','about')->name('about');
-Route::get('/portfolio','App\Http\Controllers\ProjectController@index')->name('projects.index');
-Route::get('/portfolio/{project}', 'App\Http\Controllers\ProjectController@show')->name('projects.show');
-Route::view('/contact','contact')->name('contact');
 
+Route::get('/portfolio','App\Http\Controllers\ProjectController@index')->name('projects.index');
+Route::get('/portfolio/create', 'App\Http\Controllers\ProjectController@create')->name('projects.create');
+
+Route::post('/portfolio','App\Http\Controllers\ProjectController@store')->name('projects.store');
+
+Route::get('/portfolio/{project}', 'App\Http\Controllers\ProjectController@show')->name('projects.show');
+
+Route::view('/contact','contact')->name('contact');
 Route::post('contact','App\Http\Controllers\MessageController@store')->name('messages.store');
 
 
