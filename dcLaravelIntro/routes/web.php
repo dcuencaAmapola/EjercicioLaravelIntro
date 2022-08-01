@@ -29,3 +29,7 @@ Route::view('/contact','contact')->name('contact');
 Route::post('contact','App\Http\Controllers\MessageController@store')->name('messages.store');
 
 
+
+Auth::routes(['register' => false]);
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
