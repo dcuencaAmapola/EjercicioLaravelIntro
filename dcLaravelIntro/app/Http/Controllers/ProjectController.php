@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Http\Requests\CreateProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -23,14 +24,21 @@ class ProjectController extends Controller
         return view('projects.create');
     }
 
-    public function store()
+    public function store(CreateProjectRequest $request)
     {
         /*Project::create([
             'title' => request('title'),
             'url' => request('url'),
             'description' => request('description'),
         ]);*/
-        Project::create(request()->all());//por asigancion masiva
+
+        /*$fields = request()->validate([
+            'title' => 'required',
+            'url' => 'required',
+            'description' => 'required',
+        ]);//si se valida ya no necesiamo modificar el modelo con el fillable - ya lo hace la clase request autmaticamente*/
+        $fields = $request->validated();
+        Project::create($fields);//por asigancion masiva
 
         return redirect()->route('projects.index');
     }
