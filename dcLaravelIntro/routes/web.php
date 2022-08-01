@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
-Route::view('/','home')->name('home');
-Route::view('/about','about')->name('about');
+Route::view('/', 'home')->name('home');
+Route::view('/about', 'about')->name('about');
 
-Route::resource('portfolio','App\Http\Controllers\ProjectController')->names('projects')->parameters(['portfolio' => 'project']);
+Route::resource('portfolio', 'App\Http\Controllers\ProjectController')->names('projects')->parameters(['portfolio' => 'project'])->middleware('auth');
 /*Route::get('/portfolio','App\Http\Controllers\ProjectController@index')->name('projects.index');
 Route::get('/portfolio/{project}/editar', 'App\Http\Controllers\ProjectController@edit')->name('projects.edit');
 Route::patch('/portfolio/{project}', 'App\Http\Controllers\ProjectController@update')->name('projects.update');
@@ -25,10 +25,8 @@ Route::post('/portfolio','App\Http\Controllers\ProjectController@store')->name('
 Route::get('/portfolio/{project}', 'App\Http\Controllers\ProjectController@show')->name('projects.show');
 Route::patch('/portafolio/{project}','App\Http\Controllers\ProjectController@destroy')->name('projects.destroy');*/
 
-Route::view('/contact','contact')->name('contact');
-Route::post('contact','App\Http\Controllers\MessageController@store')->name('messages.store');
-
-
+Route::view('/contact', 'contact')->name('contact')->middleware('auth');
+Route::post('contact', 'App\Http\Controllers\MessageController@store')->name('messages.store')->middleware('auth');
 
 Auth::routes(['register' => false]);
 
