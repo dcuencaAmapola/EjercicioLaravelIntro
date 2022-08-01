@@ -17,6 +17,10 @@ Route::view('/','home')->name('home');
 Route::view('/about','about')->name('about');
 
 Route::get('/portfolio','App\Http\Controllers\ProjectController@index')->name('projects.index');
+
+Route::get('/portfolio/{project}/editar', 'App\Http\Controllers\ProjectController@edit')->name('projects.edit');
+Route::patch('/portfolio/{project}', 'App\Http\Controllers\ProjectController@update')->name('projects.update');
+
 Route::get('/portfolio/create', 'App\Http\Controllers\ProjectController@create')->name('projects.create');
 
 Route::post('/portfolio','App\Http\Controllers\ProjectController@store')->name('projects.store');

@@ -3,29 +3,13 @@
 @section('content')
     <h1>Crear Proyecto</h1>
 
-    @if($errors->any())
-        <ul>
-            @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    @endif
+    @include('partials.validation-errors')
 
     <form method="POST" action="{{ route('projects.store')}}">
-        @csrf
-        <label>Titulo del Proyecto<br>
-            <input type="text" name="title">
-        </label>
-        <br>
-        <label>URL del Proyecto<br>
-            <input type="text" name="url">
-        </label>
-        <br>
-        <label>
-            Descripcion del Proyecto<br>
-            <textarea name="description"></textarea>
-        </label>
-        <br>
-        <button type="submit">Save</button>
+
+        @include('projects._form')
+
+        @include('projects._form', ['btnText' => 'Save'])
+
     </form>
 @endsection
