@@ -5,7 +5,7 @@
 
     @include('partials.validation-errors')
 
-    <form method="POST" action="{{ route('projects.store')}}">
+    <form method="POST" action="{{ route('projects.store') }}">
 
         @include('projects._form', ['btnText' => 'Save'])
 

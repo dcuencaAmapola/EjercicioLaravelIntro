@@ -5,7 +5,7 @@
 
     @include('partials.validation-errors')
 
-    <form method="POST" action="{{ route('projects.update',$project)}}">
+    <form method="POST" action="{{ route('projects.update', $project) }}">
         @method('PATCH')
 
         @include('projects._form', ['btnText' => 'Edit'])

@@ -20,6 +20,6 @@ class MessagesController extends Controller
 
         Mail::to('dcuenca@memorialtechnologies.com')->send(new MessageReceived());
 
-        return 'Mensaje enviado';
+        return back()->with('status','Recibimos tu mensaje, te responderemos en 24 horas.');//mensaje flash
     }
 }

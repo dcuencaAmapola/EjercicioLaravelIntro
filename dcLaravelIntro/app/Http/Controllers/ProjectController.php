@@ -44,7 +44,7 @@ class ProjectController extends Controller
         $fields = $request->validated();
         Project::create($fields);//por asigancion masiva
 
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('status','Proyecto creado con exito');
     }
 
     public function show(Project $project)
@@ -64,7 +64,7 @@ class ProjectController extends Controller
     public function update(Project $project, SaveProjectRequest $request)
     {
         $project->update($request->validated());
-        return redirect()->route('projects.show',$project);
+        return redirect()->route('projects.show',$project)->with('status','Proyecto actualizado con exito');
     }
 
     public function destroy(Project $project)
@@ -76,6 +76,6 @@ class ProjectController extends Controller
             'active' => 0,
         ]);
         //return $project;
-        return redirect()->route('projects.index');
+        return redirect()->route('projects.index')->with('status','Proyecto quitado con exito');
     }
 }
