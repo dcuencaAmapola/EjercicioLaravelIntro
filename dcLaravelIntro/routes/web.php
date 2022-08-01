@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::view('/','home')->name('home');
 Route::view('/about','about')->name('about');
 Route::get('/portfolio','App\Http\Controllers\ProjectController@index')->name('projects.index');
-Route::get('/portfolio/{id}', 'App\Http\Controllers\ProjectController@show')->name('projects.show');
+Route::get('/portfolio/{project}', 'App\Http\Controllers\ProjectController@show')->name('projects.show');
 Route::view('/contact','contact')->name('contact');
 
-Route::post('contact','App\Http\Controllers\MessageController@store');
+Route::post('contact','App\Http\Controllers\MessageController@store')->name('messages.store');
 
 
