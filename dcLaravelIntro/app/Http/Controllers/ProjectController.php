@@ -10,12 +10,14 @@ class ProjectController extends Controller
 {
     public function index()
     {
+        $projects = Project::where('active', 1)->get();
+
         //$portfolio = DB::table('projects')->get();//query selector
         //$projects = Project::get();//eloquent
         //$portfolio = Project::orderBy('created_at', 'DESC')->get();//ordena por fecha
         //$portfolio = Project::latest('updated_at')->get();//ordena por fecha pero simplificado, utiliza created at por default sino se le pasa por parametro
         return view('projects.index', [
-            'projects' => Project::latest()->paginate()
+            'projects' => $projects
         ]);
     }
 
@@ -65,8 +67,15 @@ class ProjectController extends Controller
         return redirect()->route('projects.show',$project);
     }
 
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        //Project::destroy($project);
+        //$project->delete();
+        //dd($project);
+        $project->update([
+            'active' => 0,
+        ]);
+        //return $project;
+        return redirect()->route('projects.index');
     }
 }

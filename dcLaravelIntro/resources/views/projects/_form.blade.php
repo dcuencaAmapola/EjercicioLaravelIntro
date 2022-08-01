@@ -14,4 +14,4 @@
 </label>
 <br>
 
-<button type="submit">{{ $btnText }}</button>
+<button>{{ $btnText }}</button>
